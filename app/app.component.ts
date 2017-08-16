@@ -4,36 +4,46 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
   <div class="container">
-    <h1>Emerald City Smoothies</h1>
+    <h1>Rose City Smoothies</h1>
     <h2>Live Menu</h2>
     <table>
-      <tr ng-style="{'text-align' : left}">
-        <th>Name: </th>
-        <th>Price: </th>
-        <th>Ingredients: </th>
-        <th>Pints Left: </th>
-        <th>Edit: </th>
-        <th>Order 1: </th>
-      </tr>
       <tr>
+        <th>Name: </th>
         <td *ngFor="let smoothie of smoothies">{{smoothie.name}}</td>
       </tr>
       <tr>
-        <td *ngFor="let smoothie of smoothies">{{smoothie.price}}</td>
+      <th>Price: </th>
+        <td *ngFor="let smoothie of smoothies">&#36;{{smoothie.price}}</td>
       </tr>
       <tr>
+      <th>Ingredients: </th>
         <td *ngFor="let smoothie of smoothies">{{smoothie.ingredients}}</td>
       </tr>
       <tr>
+      <th>Servings Left: </th>
         <td [class]="runningLow(smoothie)" *ngFor="let smoothie of smoothies">{{smoothie.pints}}</td>
       </tr>
       <tr>
-        <td *ngFor="let smoothie of smoothies"><button (click)="editSmoothie()">Edit!</button></td>
+        <th>Edit: </th>
+        <td *ngFor="let smoothie of smoothies"><button (click)="editSmoothie(smoothie)">Edit!</button></td>
       </tr>
       <tr>
+        <th>Purchase: </th>
         <td *ngFor="let smoothie of smoothies"><button (click)="takeOneDown(smoothie)">Place Order</button></td>
       </tr>
     </table>
+    <div>
+      <h3>Edit {{selectedSmoothie.name}}:</h3>
+     <br>
+      <label>Name: </label>
+      <input [(ngModel)]="selectedSmoothie.name">
+      <label>Price: </label>
+      <input [(ngModel)]="selectedSmoothie.price">
+      <label>Ingredients: </label>
+      <input [(ngModel)]="selectedSmoothie.ingredients">
+      <label>Servings Left: </label>
+      <input [(ngModel)]="selectedSmoothie.pints">
+    </div>
   </div>
   `
 })
@@ -41,24 +51,24 @@ import { Component } from '@angular/core';
 export class AppComponent {
   smoothies: Smoothie[] = [
     new Smoothie('Orange you glad', 6, ['orange']),
-    new Smoothie('Banana-rama', 5, ['banana', 'strawberry']),
-    new Smoothie('Mango-agogo', 4, ['mango', 'pineapple'])
+    new Smoothie('Banana-rama', 5, ['banana', ' strawberry']),
+    new Smoothie('Mango-agogo', 4, ['mango', ' pineapple'])
   ];
-
+  selectedSmoothie: Smoothie = this.smoothies[0];
 
   takeOneDown(clickedSmoothie: Smoothie) {
     clickedSmoothie.pints -= 1;
   }
 
-  editSmoothie() {
-    alert("you just edited a smoothie!");
+  editSmoothie(clickedSmoothie) {
+    this.selectedSmoothie = clickedSmoothie;
   }
 
   runningLow(clickedSmoothie: Smoothie) {
-  if (clickedSmoothie.pints < 11) {
-    alert("running low on " + clickedSmoothie.name);
+    if (clickedSmoothie.pints < 11) {
+      return "bg-danger";
+    }
   }
-}
 }
 
 export class Smoothie {
