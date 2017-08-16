@@ -8,12 +8,12 @@ import { Component } from '@angular/core';
     <h2>Live Menu</h2>
     <table>
       <tr ng-style="{'text-align' : left}">
-        <th>Name:</th>
-        <th>Price:</th>
-        <th>Ingredients:</th>
-        <th>Pints Left:</th>
-        <th>Edit:</th>
-        <th>Order 1:</th>
+        <th>Name: </th>
+        <th>Price: </th>
+        <th>Ingredients: </th>
+        <th>Pints Left: </th>
+        <th>Edit: </th>
+        <th>Order 1: </th>
       </tr>
       <tr>
         <td *ngFor="let smoothie of smoothies">{{smoothie.name}}</td>
@@ -25,7 +25,7 @@ import { Component } from '@angular/core';
         <td *ngFor="let smoothie of smoothies">{{smoothie.ingredients}}</td>
       </tr>
       <tr>
-        <td *ngFor="let smoothie of smoothies">{{smoothie.pints}}</td>
+        <td [class]="runningLow(smoothie)" *ngFor="let smoothie of smoothies">{{smoothie.pints}}</td>
       </tr>
       <tr>
         <td *ngFor="let smoothie of smoothies"><button (click)="editSmoothie()">Edit!</button></td>
@@ -48,15 +48,20 @@ export class AppComponent {
 
   takeOneDown(clickedSmoothie: Smoothie) {
     clickedSmoothie.pints -= 1;
-    alert(clickedSmoothie.pints);
   }
 
   editSmoothie() {
     alert("you just edited a smoothie!");
   }
+
+  runningLow(clickedSmoothie: Smoothie) {
+  if (clickedSmoothie.pints < 11) {
+    alert("running low on " + clickedSmoothie.name);
+  }
+}
 }
 
 export class Smoothie {
-  public pints: number = 124;
+  public pints: number = 20;
   constructor(public name: string, public price: number, public ingredients: Array<string>) { }
 }
