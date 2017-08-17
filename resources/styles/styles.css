@@ -1,15 +1,52 @@
-/*body {
-  background-image: url("../images/background.jpg");
-  background-repeat: none;
-  background-size: cover;
-}*/
-
+body {
+  text-align: center;
+  background-color: grey;
+  background-image: url('background.jpg');
+}
+.jumbotron {
+  background-color: #f4c76e;
+  color: #e88061;
+}
 .container {
   background-color: white;
 }
+table {
+  text-align: center;
+  border: 1px solid brown;
+}
+
+#table-wrapper {
+  position:relative;
+  display: inline;
+}
+
+#table-scroll {
+  width: 900px;
+  overflow:auto;
+}
+
+#table-wrapper table {
+  height: 100%;
+}
+
 td {
   font-size: 2em;
   padding-right: 20px;
-  border-left: 1px solid black;
+  border-left: 1px solid brown;
   padding: 10px;
+}
+
+th {
+  font-size: 24px;
+}
+
+.fruit_pic {
+  display: inline;
+  height: 75px;
+  width: 75px;
+  margin-right: 50px;
+}
+
+#apple {
+  margin-left: 130px;
 }

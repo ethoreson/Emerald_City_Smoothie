@@ -5,31 +5,26 @@ import { Smoothie } from './smoothie.model';
   selector: 'app-root',
   template: `
   <div class="container">
+  <div class="jumbotron">
     <h1>Rose City Smoothies</h1>
+  </div>
     <smoothie-list [childSmoothieList]="smoothies" (clickSender)="editSmoothie($event)"></smoothie-list>
     <hr>
-    <button (click)=addSmoothie()>Add New Smoothie</button>
-    <edit-smoothie [childSelectedSmoothie]="selectedSmoothie" (doneButtonClickedSender)="finishedEditing()"></edit-smoothie>
+    <edit-smoothie [childSelectedSmoothie]="selectedSmoothie" (doneButtonClickedSender)="finishedEditing($event)"></edit-smoothie>
+    <new-smoothie (newSmoothieSender)="addSmoothie($event)"></new-smoothie>
   </div>
-<!--    <div *ngIf="newSmoothie">
-      <h3>New Smoothie</h3>
-      <br>
-      <label>Name: </label>
-      <input [(ngModel)]="newSmoothie.name">
-      <label>Price: </label>
-      <input [(ngModel)]="newSmoothie.price">
-      <label>Ingredients: </label>
-      <input [(ngModel)]="newSmoothie.ingredients">
-      <button (click)="finishedCreating()">Save</button>
-    </div> -->
   `
 })
 
 export class AppComponent {
   smoothies: Smoothie[] = [
-    new Smoothie('Orange you glad', 6, ['orange']),
+    new Smoothie('Orange you glad', 6, ['orange', ' banana', ' passion fruit']),
     new Smoothie('Banana-rama', 5, ['banana', ' strawberry']),
-    new Smoothie('Mango-agogo', 4, ['mango', ' pineapple'])
+    new Smoothie('Mango-agogo', 4, ['mango', ' pineapple']),
+    new Smoothie('CranApple', 8, ['cranberry', ' apple']),
+    new Smoothie('Caribbean Breeze', 7, ['peach', ' passion fruit']),
+    new Smoothie('Razzle Dazzle', 9, ['blueberries', ' raspberries']),
+    new Smoothie('Green Giant', 10, ['kale', ' carrots', ' apple', ' cranberries', ' orange'])
   ];
   selectedSmoothie = null;
   newSmoothie = null;
@@ -41,4 +36,9 @@ export class AppComponent {
   editSmoothie(clickedSmoothie) {
     this.selectedSmoothie = clickedSmoothie;
   }
+
+  addSmoothie(newSmoothieFormChild: Smoothie) {
+    this.smoothies.push(newSmoothieFormChild);
+  }
+
 }

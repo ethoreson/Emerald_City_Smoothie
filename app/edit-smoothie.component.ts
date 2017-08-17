@@ -4,7 +4,6 @@ import { Smoothie } from './smoothie.model';
 @Component({
   selector: 'edit-smoothie',
   template: `
-  <div>
     <div *ngIf="childSelectedSmoothie">
       <h3>Edit {{childSelectedSmoothie.name}}:</h3>
       <br>
@@ -17,8 +16,9 @@ import { Smoothie } from './smoothie.model';
       <label>Servings Left: </label>
       <input [(ngModel)]="childSelectedSmoothie.pints">
       <button (click)="doneButtonClicked()">Done</button>
+      <hr>
     </div>
-  <div>
+
   `
 })
 

@@ -4,7 +4,11 @@ import { Smoothie } from './smoothie.model';
 @Component({
   selector: 'smoothie-list',
   template: `
-  <h2>Live Menu</h2>
+  <div class="live_menu">
+  <h1>Live Menu</h1>
+  </div>
+  <div id="table-wrapper">
+  <div id="table-scroll">
   <table>
     <tr>
       <th>Name: </th>
@@ -31,6 +35,14 @@ import { Smoothie } from './smoothie.model';
       <td *ngFor="let smoothie of childSmoothieList"><button (click)="takeOneDown(smoothie)">Place Order</button></td>
     </tr>
   </table>
+  <img class="fruit_pic" id="apple" src='../resources/images/apple.png'>
+  <img class="fruit_pic" id="banana" src='../resources/images/banana.png'>
+  <img class="fruit_pic" id="guava" src='../resources/images/guava.png'>
+  <img class="fruit_pic" id="mango" src='../resources/images/mango.png'>
+  <img class="fruit_pic" id="pineapple" src='../resources/images/pineapple.png'>
+  <img class="fruit_pic" id="strawberry" src='../resources/images/strawberry.png'>
+  </div>
+  </div>
   `
 })
 
