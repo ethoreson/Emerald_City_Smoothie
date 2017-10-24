@@ -8,4 +8,3 @@ In the command line:
 * bower install bootstrap --save
 * gulp build
 * gulp serve
-* open index.html
